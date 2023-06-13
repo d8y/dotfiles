@@ -41,7 +41,7 @@ bindkey '^R' buffer-fzf-history
 
 ### ssh
 function sshp() {
-    local HOST="$(command egrep -i '^Host\s+.+' $HOME/.ssh/config $(find $HOME/.ssh/conf.d/ -type f 2>/dev/null) $(find $HOME/.ssh/conf.d/work/ -type f 2>/dev/null) | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
+    local HOST="$(command egrep -i '^Host\s+.+' $HOME/.ssh/config $(find $HOME/.ssh/conf.d/ -type f 2>/dev/null) $(find $HOME/.ssh/conf.d/work -type f -o -type l 2>/dev/null) | command egrep -v '[*?]' | awk '{print $2}' | sort | fzf)"
 
     if [ -n "$HOST" ]; then
         ssh $HOST
