@@ -31,3 +31,4 @@ source $(brew --prefix)/opt/zinit/zinit.zsh
 source $HOME/zsh/01_config.zsh
 source $HOME/zsh/02_alias.zsh
 source $HOME/zsh/03_plugins.zsh
+source $HOME/zsh/04_miteras.zsh
