@@ -4,6 +4,7 @@ CURRENT_DIR=`pwd`
 
 ln -fsv "$CURRENT_DIR/.zshrc" ~/.zshrc
 DIRECTORY=zsh
+ln -fsv "$CURRENT_DIR/$DIRECTORY/.zshrc.local" ~/.zshrc.local
 
 if [ ! -d ~/$DIRECTORY ]; then
   mkdir ~/$DIRECTORY
