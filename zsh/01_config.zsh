@@ -1,16 +1,21 @@
 ### history
-HISTFILE=~/.zsh_history
+export HISTFILE=~/.zsh_history
 export SAVEHIST=10000
 export HISTSIZE=1000
 
 # share .zshhistory
 setopt share_history
+setopt EXTENDED_HISTORY
 setopt inc_append_history
+setopt hist_verify
+setopt hist_no_store
+setopt hist_expand
 
 setopt hist_ignore_all_dups
 setopt hist_reduce_blanks
 setopt hist_save_no_dups
 setopt extended_history
+unsetopt HIST_IGNORE_SPACE
 ### end history
 
 autoload -Uz colors && colors

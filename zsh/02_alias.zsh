@@ -56,22 +56,19 @@ phpstorm() {
 }
 ### end phpstorm
 
-### docker
-dcea() {
-    docker-compose exec app ash
-}
-zle -N dcea
-### end docker
+### docker-compose
+alias dc='docker compose'
+### end docker-compose
 
 ### docker
-dcd() {
+function dcd() {
     docker-compose down
 }
 zle -N dcd
 ### end docker
 
 ### docker
-dcu() {
+function dcu() {
     docker-compose up --remove-orphans
 }
 zle -N dcu
