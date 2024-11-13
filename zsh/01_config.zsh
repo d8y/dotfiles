@@ -25,7 +25,6 @@ setopt print_eight_bit
 setopt correct
 setopt auto_pushd
 setopt no_beep
-PROMPT="%F{green}%n%f %F{cyan}($(arch))%f:%F{magenta}%~%f %# "
 
 fpath=(${ASDF_DIR}/completions $fpath)
 

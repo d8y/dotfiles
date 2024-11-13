@@ -50,6 +50,14 @@ function sshp() {
 zle -N sshp
 ### end ssh
 
+### aws-vault
+function aws_vault_prompt {
+  if [ -n "$AWS_VAULT" ]; then
+    echo "(aws-vault: $AWS_VAULT)"
+  fi
+}
+### end aws-vault
+
 ### phpstorm
 phpstorm() {
     open -na "PhpStorm.app" --args "$@"

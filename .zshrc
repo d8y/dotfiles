@@ -31,5 +31,7 @@ source $(brew --prefix)/opt/zinit/zinit.zsh
 source $HOME/zsh/01_config.zsh
 source $HOME/zsh/02_alias.zsh
 source $HOME/zsh/03_plugins.zsh
-source $HOME/zsh/04_miteras.zsh
+source $HOME/zsh/04_attendance.zsh
 source $HOME/.zshrc.local
+eval "$(mise activate zsh)"
+PROMPT="%F{yellow}$(aws_vault_prompt)%f%F{green}%n%f %F{cyan}($(arch))%f:%F{magenta}%~%f %# "
