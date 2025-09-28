@@ -1,6 +1,6 @@
-.PHONY: all install brew dotfiles mise help brew-dump brew-update brew-clean macos git-config ssh-key directories
+.PHONY: all install brew dotfiles mise help brew-dump brew-update brew-clean git-config directories
 
-all: directories brew dotfiles mise macos git-config
+all: directories brew dotfiles mise git-config
 
 help:
 	@echo "Available targets:"
@@ -8,9 +8,7 @@ help:
 	@echo "  make brew        - Install Homebrew and packages"
 	@echo "  make dotfiles    - Create symlinks for dotfiles"
 	@echo "  make mise        - Install mise and configure tools"
-	@echo "  make macos       - Configure macOS system preferences"
 	@echo "  make git-config  - Setup git configuration"
-	@echo "  make ssh-key     - Generate SSH key"
 	@echo "  make directories - Create development directories"
 	@echo "  make brew-dump   - Save current brew packages to Brewfile"
 	@echo "  make brew-update - Update all brew packages"
@@ -76,27 +74,6 @@ directories:
 	fi
 	@mkdir -p ~/.config
 
-macos:
-	@echo "Configuring macOS settings..."
-	@# Finder: show all filename extensions
-	@defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-	@# Finder: show hidden files
-	@defaults write com.apple.finder AppleShowAllFiles -bool true
-	@# Finder: show path bar
-	@defaults write com.apple.finder ShowPathbar -bool true
-	@# Dock: automatically hide and show
-	@defaults write com.apple.dock autohide -bool true
-	@# Enable tap to click
-	@defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
-	@# Save screenshots to Downloads
-	@defaults write com.apple.screencapture location -string "$${HOME}/Downloads"
-	@# Disable press-and-hold for keys in favor of key repeat
-	@defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
-	@# Set a fast key repeat rate
-	@defaults write NSGlobalDomain KeyRepeat -int 2
-	@defaults write NSGlobalDomain InitialKeyRepeat -int 15
-	@echo "macOS settings configured. Restart may be required."
-
 git-config:
 	@echo "Configuring git..."
 	@read -p "Enter your git user name: " name; \
@@ -109,15 +86,3 @@ git-config:
 	@git config --global core.ignorecase false
 	@git config --global ghq.root /Volumes/Git
 	@echo "Git configured"
-
-ssh-key:
-	@echo "Generating SSH key..."
-	@if [ ! -f ~/.ssh/id_ed25519 ]; then \
-		read -p "Enter your email for SSH key: " email; \
-		ssh-keygen -t ed25519 -C "$$email" -f ~/.ssh/id_ed25519; \
-		echo "SSH key generated at ~/.ssh/id_ed25519"; \
-		echo "Public key:"; \
-		cat ~/.ssh/id_ed25519.pub; \
-	else \
-		echo "SSH key already exists at ~/.ssh/id_ed25519"; \
-	fi
