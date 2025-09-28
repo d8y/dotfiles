@@ -1,0 +1,17 @@
+# Local configuration files (contain sensitive information)
+zsh/.zshrc.local
+.zshrc.local
+
+# macOS
+.DS_Store
+*.swp
+*.swo
+*~
+
+# IDE
+.idea/
+.vscode/
+
+# Temporary files
+*.tmp
+*.bak

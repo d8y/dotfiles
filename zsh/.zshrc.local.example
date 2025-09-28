@@ -1,0 +1,9 @@
+# This is an example of .zshrc.local
+# Copy this file to .zshrc.local and add your personal settings
+# .zshrc.local is gitignored and will not be committed
+
+# Example: ChatWork settings (replace with your actual values)
+# export CHAT_WORK_TOKEN="your_token_here"
+# export CHAT_WORK_ATTENDANCE_ROOM="your_room_id_here"
+
+# Add your personal environment variables and configurations below:
