@@ -82,5 +82,23 @@ function dcu() {
 zle -N dcu
 ### end docker
 
+### ecstap
+function ecstap() {
+  local profile
+  profile=$(aws configure list-profiles | fzf \
+    --prompt="AWS Profile> " \
+    --preview="aws configure list --profile {}" \
+    --preview-window=down:3:wrap)
+
+  if [[ -n "$profile" ]]; then
+    echo "Using profile: $profile"
+    AWS_PROFILE="$profile" command ecsta "$@" --command="bash"
+  else
+    echo "No profile selected"
+    return 1
+  fi
+}
+### end ecstap
+
 ### Claude
 alias cc="ENABLE_BACKGROUND_TASKS=1 MAX_THINKING_TOKENS=31999 ANTHROPIC_SMALL_FAST_MODEL=sonnet CLAUDE_CODE_MAX_OUTPUT_TOKENS=32000 MAX_MCP_OUTPUT_TOKENS=120000 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 DISABLE_NON_ESSENTIAL_MODEL_CALLS=1 MCP_TIMEOUT=30000 MCP_TOOL_TIMEOUT=300000 claude --dangerously-skip-permissions --append-system-prompt 'use context7.'"
