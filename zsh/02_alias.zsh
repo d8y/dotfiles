@@ -102,3 +102,16 @@ function ecstap() {
 
 ### Claude
 alias cc="ENABLE_BACKGROUND_TASKS=1 MAX_THINKING_TOKENS=31999 ANTHROPIC_SMALL_FAST_MODEL=sonnet CLAUDE_CODE_MAX_OUTPUT_TOKENS=32000 MAX_MCP_OUTPUT_TOKENS=120000 CLAUDE_CODE_DISABLE_NONESSENTIAL_TRAFFIC=1 DISABLE_NON_ESSENTIAL_MODEL_CALLS=1 MCP_TIMEOUT=30000 MCP_TOOL_TIMEOUT=300000 claude --dangerously-skip-permissions --append-system-prompt 'use context7.'"
+### end Claude
+
+### mermaid
+mermaid-local() {
+  local port=${1:-8000}
+  local url="http://localhost:${port}"
+
+  echo "🧜 Starting Mermaid Live Editor..."
+  echo -e "   URL: \e]8;;${url}\e\\${url}\e]8;;\e\\"
+  echo ""
+  docker run --platform linux/amd64 --publish ${port}:8080 ghcr.io/mermaid-js/mermaid-live-editor
+}
+### end mermaid
