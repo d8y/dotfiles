@@ -26,7 +26,8 @@ setopt correct
 setopt auto_pushd
 setopt no_beep
 
-fpath=(${ASDF_DIR}/completions $fpath)
+# mise (runtime version manager)
+eval "$(mise activate zsh)"
 
 autoload -Uz compinit && compinit
 
