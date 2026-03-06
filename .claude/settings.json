@@ -8,6 +8,7 @@
       "Bash(git commit :*)",
       "Bash(git reset :*)",
       "Bash(git rebase :*)",
+      "Bash(git rm :*)",
       "Bash(curl :*)",
       "Bash(wget :*)",
       "Bash(nc :*)",
@@ -39,6 +40,5 @@
         ]
       }
     ]
-  },
-  "alwaysThinkingEnabled": true
+  }
 }

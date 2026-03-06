@@ -16,11 +16,21 @@ if [ "$tool_name" != "Bash" ]; then
   exit 0
 fi
 
-# settings.json から拒否パターンを読み取り
-settings_file="$HOME/.claude/settings.json"
+# settings.json から拒否パターンを読み取り（グローバル + プロジェクトローカル）
+global_settings="$HOME/.claude/settings.json"
+project_settings_local=".claude/settings.local.json"
+project_settings=".claude/settings.json"
 
-# Bash コマンドの全拒否パターンを取得
-deny_patterns=$(jq -r '.permissions.deny[] | select(startswith("Bash(")) | gsub("^Bash\\("; "") | gsub("\\)$"; "")' "$settings_file" 2>/dev/null)
+extract_deny_patterns() {
+  jq -r '.permissions.deny[] | select(startswith("Bash(")) | gsub("^Bash\\("; "") | gsub("\\)$"; "")' "$1" 2>/dev/null
+}
+
+# 全ソースから拒否パターンを結合（重複は後段で問題にならない）
+deny_patterns=$(
+  extract_deny_patterns "$global_settings"
+  [ -f "$project_settings" ] && extract_deny_patterns "$project_settings"
+  [ -f "$project_settings_local" ] && extract_deny_patterns "$project_settings_local"
+)
 
 # コマンドが拒否パターンにマッチするかチェックする関数
 matches_deny_pattern() {
