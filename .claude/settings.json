@@ -1,6 +1,7 @@
 {
   "permissions": {
     "deny": [
+      "Bash(cd :*)",
       "Bash(sudo :*)",
       "Bash(rm :*)",
       "Bash(rm -rf :*)",
