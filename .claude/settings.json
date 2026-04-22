@@ -2,6 +2,7 @@
   "permissions": {
     "deny": [
       "Bash(cd :*)",
+      "Bash(docker compose :*)",
       "Bash(sudo :*)",
       "Bash(rm :*)",
       "Bash(rm -rf :*)",
@@ -42,6 +43,6 @@
       }
     ]
   },
-  "skipDangerousModePermissionPrompt": false,
-  "effortLevel": "high"
+  "effortLevel": "high",
+  "skipDangerousModePermissionPrompt": true
 }
